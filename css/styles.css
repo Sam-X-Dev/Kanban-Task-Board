@@ -1,0 +1,332 @@
+:root {
+  --white: #ffffff;
+  --ink: #1e2a3a;
+  --ink-soft: #5b6b80;
+  --blue: #2563eb;
+  --blue-deep: #1e3a8a;
+  --blue-mist: #eef3fd;
+  --line: #dce4f2;
+  --high: #dc4848;
+  --med: #2563eb;
+  --low: #1aa56b;
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+/* ---------- Top bar ---------- */
+.topbar {
+  padding: 28px 32px 20px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-mark {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--white);
+  background: var(--blue-deep);
+  border-radius: 6px;
+  padding: 5px 7px;
+  letter-spacing: 0.04em;
+}
+
+.brand h1 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.tagline {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+/* ---------- Composer ---------- */
+.composer {
+  max-width: 1180px;
+  margin: 24px auto 0;
+  padding: 0 32px;
+}
+
+.composer-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.composer-form input[type="text"] {
+  flex: 1;
+  min-width: 220px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: var(--white);
+}
+
+.composer-form input[type="text"]:focus,
+.composer-form select:focus,
+.composer-form button:focus {
+  outline: 2px solid var(--blue);
+  outline-offset: 1px;
+}
+
+.composer-form select {
+  padding: 12px 12px;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink);
+  background: var(--white);
+  cursor: pointer;
+}
+
+.composer-form button {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 8px;
+  background: var(--blue);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.composer-form button:hover {
+  background: var(--blue-deep);
+}
+
+.composer-error {
+  display: none;
+  color: var(--high);
+  font-size: 0.82rem;
+  margin-top: 8px;
+}
+
+.composer-error.show {
+  display: block;
+}
+
+/* ---------- Board ---------- */
+.board {
+  max-width: 1180px;
+  margin: 28px auto 0;
+  padding: 0 32px 56px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.lane {
+  background: var(--blue-mist);
+  border-radius: 12px;
+  padding: 18px;
+  min-height: 320px;
+}
+
+.lane-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+.lane-head h2 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--blue-deep);
+}
+
+.lane-tally {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--blue-deep);
+  background: var(--white);
+  border-radius: 10px;
+  padding: 2px 9px;
+}
+
+/* Signature element: thin progress bar showing each lane's share of all tasks */
+.lane-bar {
+  height: 4px;
+  background: var(--line);
+  border-radius: 4px;
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+
+.lane-bar span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: var(--blue);
+  transition: width 0.25s ease;
+}
+
+.dropzone {
+  min-height: 220px;
+  border: 2px dashed transparent;
+  border-radius: 8px;
+  padding: 2px;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.dropzone.hover {
+  border-color: var(--blue);
+  background: rgba(37, 99, 235, 0.06);
+}
+
+/* ---------- Card ---------- */
+.task-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--med);
+  border-radius: 8px;
+  padding: 13px 14px;
+  margin-bottom: 10px;
+  cursor: grab;
+  box-shadow: 0 1px 2px rgba(30, 42, 58, 0.04);
+}
+
+.task-card[data-priority="high"] {
+  border-left-color: var(--high);
+}
+
+.task-card[data-priority="low"] {
+  border-left-color: var(--low);
+}
+
+.task-card:active {
+  cursor: grabbing;
+}
+
+.task-card.dragging {
+  opacity: 0.4;
+}
+
+.task-title {
+  font-size: 0.93rem;
+  font-weight: 500;
+  color: var(--ink);
+  word-break: break-word;
+  margin-bottom: 8px;
+}
+
+.task-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.priority-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.task-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.task-actions button {
+  border: none;
+  background: none;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-family: var(--font-body);
+}
+
+.task-actions button:hover {
+  background: var(--blue-mist);
+  color: var(--blue-deep);
+}
+
+.task-actions .danger:hover {
+  background: #fde8e8;
+  color: var(--high);
+}
+
+.task-actions .advance:hover {
+  background: #e3f6ec;
+  color: var(--low);
+}
+
+.edit-field {
+  width: 100%;
+  padding: 7px 9px;
+  border: 1.5px solid var(--blue);
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  margin-bottom: 7px;
+}
+
+/* ---------- Footer ---------- */
+.footer-note {
+  text-align: center;
+  padding: 0 0 36px;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
+  .board {
+    grid-template-columns: 1fr;
+  }
+  .topbar {
+    padding: 22px 20px 16px;
+  }
+  .composer,
+  .board {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .lane-bar span,
+  .composer-form button,
+  .dropzone {
+    transition: none;
+  }
+}
