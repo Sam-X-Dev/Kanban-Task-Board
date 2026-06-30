@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flowboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">FB</span>
+        <h1>Flowboard</h1>
+      </div>
+      <p class="tagline">Move work, not meetings.</p>
+    </header>
+
+    <section class="composer" aria-label="Add a new task">
+      <form id="composer-form" class="composer-form">
+        <input
+          type="text"
+          id="task-title"
+          placeholder="What needs doing?"
+          autocomplete="off"
+        />
+        <select id="task-priority" aria-label="Priority">
+          <option value="low">Low</option>
+          <option value="med" selected>Medium</option>
+          <option value="high">High</option>
+        </select>
+        <select id="task-lane" aria-label="Lane">
+          <option value="queued">Queued</option>
+          <option value="active">In Motion</option>
+          <option value="shipped">Shipped</option>
+        </select>
+        <button type="submit">Add task</button>
+      </form>
+      <p class="composer-error" id="composer-error">Give the task a name first.</p>
+    </section>
+
+    <main class="board" id="board">
+      <section class="lane" data-lane="queued">
+        <div class="lane-head">
+          <h2>Queued</h2>
+          <span class="lane-tally" id="tally-queued">0</span>
+        </div>
+        <div class="lane-bar"><span id="bar-queued"></span></div>
+        <div class="dropzone" id="zone-queued"></div>
+      </section>
+
+      <section class="lane" data-lane="active">
+        <div class="lane-head">
+          <h2>In Motion</h2>
+          <span class="lane-tally" id="tally-active">0</span>
+        </div>
+        <div class="lane-bar"><span id="bar-active"></span></div>
+        <div class="dropzone" id="zone-active"></div>
+      </section>
+
+      <section class="lane" data-lane="shipped">
+        <div class="lane-head">
+          <h2>Shipped</h2>
+          <span class="lane-tally" id="tally-shipped">0</span>
+        </div>
+        <div class="lane-bar"><span id="bar-shipped"></span></div>
+        <div class="dropzone" id="zone-shipped"></div>
+      </section>
+    </main>
+
+    <footer class="footer-note">
+      <p>Tasks are saved on this device only.</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>
